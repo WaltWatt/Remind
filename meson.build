@@ -1,7 +1,21 @@
 project (
     'remind',
     'c',
+    default_options: [
+        # does not compile even with c99:
+        #'c_std=c11',
+        # does not compile with the following either:
+        #'warning_level=2',
+        'werror=true',
+    ],
 )
+add_project_arguments('-Wall', language: 'c')
+add_project_arguments('-g',    language: 'c')
+add_project_arguments('-O2',   language: 'c')
+add_project_arguments('-Wstrict-prototypes', language: 'c')
+add_project_arguments('-DHAVE_CONFIG_H',     language: 'c')
+
+cc = meson.get_compiler('c')
 
 executable (
     'remind',
@@ -27,16 +41,6 @@ executable (
     'src/userfns.c',
     'src/utils.c',
     'src/var.c',
-    c_args : [
-        '-Wno-error',
-        '-g',
-        '-O2',
-        '-Wall',
-        '-Wstrict-prototypes',
-        '-DHAVE_CONFIG_H',
-        '-I.',
-        '-I.'
-    ],
     link_args : ['-lm']
 )
 
@@ -44,14 +48,4 @@ executable (
     'rem2ps',
     'src/rem2ps.c',
     'src/dynbuf.c',
-    c_args : [
-        '-Wno-error',
-        '-g',
-        '-O2',
-        '-Wall',
-        '-Wstrict-prototypes',
-        '-DHAVE_CONFIG_H',
-        '-I.',
-        '-I.'
-    ],
 )
