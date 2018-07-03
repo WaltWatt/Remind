@@ -25,8 +25,6 @@ as_major_version = ver_arr[0]
 as_minor_version = ver_arr[1]
 as_micro_version = ver_arr[2]
 
-#include_directories = ('.')
-
 config = configuration_data()
 
 ### Check for header files
@@ -45,7 +43,6 @@ config.set('HAVE_WCTYPE_H', val == true ? 1 : false, description: desc)
 desc = 'Define if you have the <locale.h> header file'
 val = cc.has_header('locale.h')
 config.set('HAVE_LOCALE_H', val == true ? 1 : false, description: desc)
-
 
 ### Check for library functions
 val = cc.has_function('setenv', prefix : '#include <stdlib.h>')
@@ -72,16 +69,6 @@ config.set('SIZEOF_UNSIGNED_INT', val, description: 'The number of bytes in an u
 
 val = cc.sizeof('unsigned long', prefix : '#include <stdio.h>')
 config.set('SIZEOF_UNSIGNED_LONG', val, description: 'The number of bytes in an unsigned long') 
-
-#dnl Checks for typedefs, structures, and compiler characteristics.
-# obsolescent:
-#AC_STRUCT_TM
-
-#dnl Checks for library functions.
-# obsolescent:
-#AC_FUNC_UTIME_NULL
-# obsolescent:
-#AC_HEADER_TIME
 
 configure_file(
     input  : 'src/config.h.in',
