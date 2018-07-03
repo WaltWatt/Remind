@@ -64,11 +64,14 @@ dnl Checks for header files.
 AC_CHECK_HEADERS(sys/file.h glob.h wctype.h locale.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_STRUCT_TM
+# Obsolescent:
+#AC_STRUCT_TM
 
 dnl Checks for library functions.
-AC_FUNC_UTIME_NULL
-AC_HEADER_TIME
+# Obsolescent:
+#AC_FUNC_UTIME_NULL
+# Obsolescent:
+#AC_HEADER_TIME
 
 if test "$GCC" = yes; then
 	CFLAGS="$CFLAGS -Wall -Wstrict-prototypes"
