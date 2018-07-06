@@ -91,14 +91,17 @@ val = cc.has_function('setlocale', prefix : '#include <locale.h>')
 config.set('HAVE_SETLOCALE', val == true ? 1 : false)
 
 ### Integer sizes
+desc = 'The number of bytes in an unsigned short'
 val = cc.sizeof('unsigned short', prefix : '#include <stdio.h>')
-config.set('SIZEOF_UNSIGNED_SHORT', val, description: 'The number of bytes in an unsigned short') 
+config.set('SIZEOF_UNSIGNED_SHORT', val, description: desc)
 
+desc = 'The number of bytes in an unsigned int'
 val = cc.sizeof('unsigned int', prefix : '#include <stdio.h>')
-config.set('SIZEOF_UNSIGNED_INT', val, description: 'The number of bytes in an unsigned int') 
+config.set('SIZEOF_UNSIGNED_INT', val, description: desc)
 
+desc = 'The number of bytes in an unsigned long'
 val = cc.sizeof('unsigned long', prefix : '#include <stdio.h>')
-config.set('SIZEOF_UNSIGNED_LONG', val, description: 'The number of bytes in an unsigned long') 
+config.set('SIZEOF_UNSIGNED_LONG', val, description: desc)
 
 configure_file(
     input  : 'src/config.h.in',
