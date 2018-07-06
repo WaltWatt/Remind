@@ -116,14 +116,16 @@ configure_file(
     configuration : config_ver,
 )
 
-config_custom = configuration_data()
 configure_file(
     input  : 'src/custom.h.in',
     output : 'custom.h',
-    configuration : config_custom,
+    copy : true
 )
 
+## Checks for libraries.
+## Replace `main' with a function in -lm:
 m_dep = cc.find_library('m', required : true)
+cc.has_function('sqrt', args : '-lm')
 
 executable(
     'remind',
@@ -149,11 +151,13 @@ executable(
     'src/userfns.c',
     'src/utils.c',
     'src/var.c',
-    link_args : ['-lm']
+    link_args : ['-lm'],
+    install : true
 )
 
 executable(
     'rem2ps',
     'src/rem2ps.c',
     'src/dynbuf.c',
+    install : true
 )
