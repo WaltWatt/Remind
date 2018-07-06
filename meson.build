@@ -161,3 +161,11 @@ executable(
     'src/dynbuf.c',
     install : true
 )
+
+install_man(
+    'man/rem.1',
+    'man/remind.1',
+    'man/rem2ps.1',
+    'man/cm2rem.1',
+    'man/tkremind.1',
+)
