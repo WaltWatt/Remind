@@ -1,4 +1,5 @@
 build/
+ref/
 src/main.cc
 *.o
 src/*.tar.gz*
