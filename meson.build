@@ -7,7 +7,6 @@ project(
         #'c_std=c11',
         # does not compile with the following either:
         #'warning_level=2',
-        'werror=true',
     ],
 )
 add_project_arguments('-Wall', language: 'c')
@@ -24,6 +23,37 @@ ver_arr = as_version.split('.')
 as_major_version = ver_arr[0]
 as_minor_version = ver_arr[1]
 as_micro_version = ver_arr[2]
+
+msg = '''
+
+**********************
+*                    *
+* Configuring REMIND *
+*                    *
+**********************
+'''
+
+## Let's respect the Remind's authors
+tm = target_machine.system()
+if tm == 'darwin'
+    msg += '''
+Please don't use Apple products.  This script will continue in 30 seconds
+if you insist on compiling Remind on Mac OS X.
+'''
+elif tm == 'cygwin'
+    msg += '''
+Please don't use Microsoft products.  This script will continue in 30
+seconds if you insist on compiling Remind on Cygwin.
+'''
+endif
+message(msg)
+if tm == 'darwin' or tm == 'cygwin'
+    ## Cannot make trap work!
+    #run_command('trap', '\'echo Be patient...\'', 'INT', 'TERM')
+    run_command('sleep', '30')
+    #run_command('trap', '-', 'INT')
+    #run_command('trap', '-', 'TERM')
+endif
 
 config = configuration_data()
 
