@@ -33,7 +33,7 @@ msg = '''
 **********************
 '''
 
-## Let's respect the Remind's authors
+### Out of respect to the authors of Remind
 tm = target_machine.system()
 if tm == 'darwin'
     msg += '''
